@@ -12,5 +12,6 @@ namespace LeagueClassification.SimEngine.Interfaces
         Task<List<Match>> SimulateRound(int round);
         Task<List<Match>> SaveMatchSchedule(List<Match> matches);
         Task<Match?> GetMatch(int id);
+        Task<Match?> SimulateMatch(int matchId);
     }
 }

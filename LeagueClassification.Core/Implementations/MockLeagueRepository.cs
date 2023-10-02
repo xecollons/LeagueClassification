@@ -106,5 +106,17 @@ namespace LeagueClassification.Core.Implementations
             }
             catch (KeyNotFoundException) { return null; }
         }
+
+        public async Task<Match> SaveMatch(Match match)
+        {
+            if (match.Id == 0)
+            {
+                match.Id = ++InMemorySourceContext.LastMatchId;
+                InMemorySourceContext.TeamClassificationEntries[match.HomeTeam.Id].TeamMatches.Add(match);
+                InMemorySourceContext.TeamClassificationEntries[match.AwayTeam.Id].TeamMatches.Add(match);
+            }
+            InMemorySourceContext.Matches[match.Id] = match;
+            return match;
+        }
     }
 }

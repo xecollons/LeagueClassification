@@ -9,6 +9,7 @@ namespace LeagueClassification.Core.Interfaces
         Task<List<Match>> GetMatchesForTeam(int teamId);
         Task<List<TeamClassificationStats>> GetLeagueClassification();
         Task<List<Match>> SaveMatches(List<Match> matches);
+        Task<Match> SaveMatch(Match match);
         Task<List<Team>> GetTeams();
         Task<Team?> GetTeam(int teamId);
         Task<TeamClassificationStats> GetTeamClassificationEntry(int id);

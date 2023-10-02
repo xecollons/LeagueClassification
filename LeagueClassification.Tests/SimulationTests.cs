@@ -78,6 +78,23 @@ namespace LeagueClassification.Tests
         }
 
         [Test]
+        public async Task Assert_Simulating_Match_Simulates_Match()
+        {
+            var matches = await matchEngineService.GenerateMatchSchedule();
+            var match = await matchEngineService.SimulateMatch(matches.First().Id);
+
+            Assert.IsTrue(match.Played);
+        }
+
+        [Test]
+        public async Task Assert_Simulating_NonExistingMatch_Returns_Null()
+        {
+            var match = await matchEngineService.SimulateMatch(222);
+
+            Assert.IsNull(match);
+        }
+
+        [Test]
         public async Task Assert_SimulatingAll_SimulatesAllMatches()
         {
             await matchEngineService.GenerateMatchSchedule();

@@ -94,5 +94,15 @@ namespace LeagueClassification.SimEngine.Implementations
         {
             return await _leagueRepository.GetMatch(id);
         }
+
+        public async Task<Match?> SimulateMatch(int matchId)
+        {
+            var match = await _leagueRepository.GetMatch(matchId);
+            if (match == null) return null;
+
+            SimulateMatch(match);
+            match = await _leagueRepository.SaveMatch(match);
+            return match;
+        }
     }
 }

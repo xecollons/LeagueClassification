@@ -46,6 +46,17 @@ namespace LeagueClassification.Controllers
             return new JsonResult(matches.Select(m => m.ToDTO()));
         }
 
+        [HttpPost("SimulateMatches/match/{matchId}")]
+        public async Task<IActionResult> SimulateMatch(int matchId)
+        {
+            var match = await _simEngineService.SimulateMatch(matchId);
+            if (match == null)
+            {
+                return NotFound();
+            }
+            return new JsonResult(match.ToDTO());
+        }
+
         [HttpGet("GetMatches")]
         public async Task<IActionResult> GetMatches()
         {
